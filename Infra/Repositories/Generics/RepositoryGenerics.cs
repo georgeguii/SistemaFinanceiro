@@ -9,26 +9,29 @@ namespace Infra.Repositories.Generics;
 
 public class RepositoryGenerics<T> : InterfaceGeneric<T>, IDisposable where T : class
 {
-    private readonly ContextBase _context;
+    protected readonly ContextBase _context;
+
+    protected virtual DbSet<T> _dbSet { get; }
 
     public RepositoryGenerics(ContextBase context)
     {
         _context = context;
+        _dbSet = _context.Set<T>();
     }
 
     public async Task<IList<T>> GetAll()
     {
-        return await _context.Set<T>().ToListAsync();
+        return await _dbSet.ToListAsync();
     }
 
     public async Task<T> GetById(int id)
     {
-        return await _context.Set<T>().FindAsync(id);
+        return await _dbSet.FindAsync(id);
     }
 
     public async Task Add(T obj)
     {
-        await _context.Set<T>().AddAsync(obj);
+        await _dbSet.AddAsync(obj);
         await _context.SaveChangesAsync();
     }
 
@@ -40,7 +43,7 @@ public class RepositoryGenerics<T> : InterfaceGeneric<T>, IDisposable where T : 
 
     public async Task Remove(T obj)
     {
-        _context.Set<T>().Remove(obj);
+        _dbSet.Remove(obj);
         await _context.SaveChangesAsync();
     }
 

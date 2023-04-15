@@ -13,4 +13,6 @@ public class FinancialSystem : Base
     public int CopyMouth { get; set; }
 
     public int CopyYear { get; set; }
+
+    public virtual UserFinancialSystem UserFinancialSystem { get; set; }
 }
