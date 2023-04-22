@@ -3,11 +3,11 @@ using Domain.Interfaces.IUserFinancialSystem;
 
 namespace Domain.Services;
 
-public class UserFinancialSystem : IUserFinancialSystem
+public class UserFinancialSystemService : IUserFinancialSystemService
 {
     private readonly InterfaceUserFinancialSystem _userFinancialSystem;
 
-    public UserFinancialSystem(InterfaceUserFinancialSystem userFinancialSystem)
+    public UserFinancialSystemService(InterfaceUserFinancialSystem userFinancialSystem)
     {
         _userFinancialSystem = userFinancialSystem;        
     }
