@@ -11,10 +11,10 @@ public class Notification
     }
 
     [NotMapped]
-    public string NameProperty { get; private set; }
+    public string NameProperty { get; set; }
 
     [NotMapped]
-    public string Message { get; private set; }
+    public string Message { get; set; }
 
     [NotMapped]
     private readonly List<Notification> _notifications;

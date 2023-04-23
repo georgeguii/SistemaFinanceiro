@@ -14,5 +14,5 @@ public class FinancialSystem : Base
 
     public int CopyYear { get; set; }
 
-    public virtual UserFinancialSystem UserFinancialSystem { get; set; }
+    public virtual UserFinancialSystem? UserFinancialSystem { get; set; }
 }
