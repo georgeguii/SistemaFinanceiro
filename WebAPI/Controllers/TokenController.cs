@@ -1,15 +1,14 @@
-﻿using Entities.Entitites;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
 
 using WebAPI.DTO;
 using WebAPI.Token;
-using Microsoft.AspNetCore.Authorization;
+using Entities.Entitites;
 
 namespace WebAPI.Controllers;
 
-[Route("api/[controller]")]
+[Route("[controller]/[action]")]
 [ApiController]
 public class TokenController : ControllerBase
 {

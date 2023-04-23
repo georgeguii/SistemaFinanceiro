@@ -1,14 +1,14 @@
 ﻿using System.Text;
-using Entities.Entitites;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.WebUtilities;
-
-using WebAPI.DTO;
 using Microsoft.AspNetCore.Authorization;
 
+using WebAPI.DTO;
+using Entities.Entitites;
+
 namespace WebAPI.Controllers;
-[Route("api/[controller]")]
+[Route("[controller]/[action]")]
 [ApiController]
 public class UsersController : ControllerBase
 {
