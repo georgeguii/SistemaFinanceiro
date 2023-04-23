@@ -1,17 +1,21 @@
 using Microsoft.OpenApi.Models;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 
 using WebAPI.Token;
-using Infra.Context;
+
 using Entities.Entitites;
-using Domain.Interfaces.Generics;
-using Infra.Repositories.Generics;
-using Domain.Interfaces.ICategory;
+
+using Infra.Context;
 using Infra.Repositories;
-using Domain.Interfaces.IExpense;
+using Infra.Repositories.Generics;
+
 using Domain.Services;
+using Domain.Interfaces.Generics;
+using Domain.Interfaces.IExpense;
+using Domain.Interfaces.ICategory;
 using Domain.Interfaces.IServices;
 using Domain.Interfaces.IFinancialSystem;
 using Domain.Interfaces.IUserFinancialSystem;
@@ -59,23 +63,23 @@ builder.Services.AddSwaggerGen(c =>
     });
 });
 
-//builder.Services.AddDbContext<ContextBase>(options =>
-//    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddDbContext<ContextBase>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ContextBase>();
 
-builder.Services.AddSingleton(typeof(InterfaceGeneric<>), typeof(RepositoryGenerics<>));
+builder.Services.AddScoped(typeof(InterfaceGeneric<>), typeof(RepositoryGenerics<>));
 
-builder.Services.AddSingleton<InterfaceExpense, ExpenseRepository>();
-builder.Services.AddSingleton<InterfaceCategory, CategoryRepository>();
-builder.Services.AddSingleton<InterfaceFinancialSystem, FinancialSystemRepository>();
-builder.Services.AddSingleton<InterfaceUserFinancialSystem, UserFinancialSystemRepository>();
+builder.Services.AddScoped<InterfaceExpense, ExpenseRepository>();
+builder.Services.AddScoped<InterfaceCategory, CategoryRepository>();
+builder.Services.AddScoped<InterfaceFinancialSystem, FinancialSystemRepository>();
+builder.Services.AddScoped<InterfaceUserFinancialSystem, UserFinancialSystemRepository>();
 
-builder.Services.AddSingleton<IExpenseService, ExpenseService>();
-builder.Services.AddSingleton<ICategoryService, CategoryService>();
-builder.Services.AddSingleton<IFinancialSystemService, FinancialSystemService>();
-builder.Services.AddSingleton<IUserFinancialSystemService, UserFinancialSystemService>();
+builder.Services.AddScoped<IExpenseService, ExpenseService>();
+builder.Services.AddScoped<ICategoryService, CategoryService>();
+builder.Services.AddScoped<IFinancialSystemService, FinancialSystemService>();
+builder.Services.AddScoped<IUserFinancialSystemService, UserFinancialSystemService>();
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(option =>

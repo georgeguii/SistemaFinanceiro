@@ -22,6 +22,7 @@ public class UsersController : ControllerBase
     }
 
     [AllowAnonymous]
+    [HttpPost]
     [Produces("application/json")]
     [ProducesResponseType(201)]
     [ProducesResponseType(400)]

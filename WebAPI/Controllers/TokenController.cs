@@ -24,6 +24,7 @@ public class TokenController : ControllerBase
 
     [AllowAnonymous]
     [Produces("application/json")]
+    [HttpPost]
     [ProducesResponseType(201)]
     [ProducesResponseType(401)]
     public async Task<IActionResult> CreateToken(InputDTO input)

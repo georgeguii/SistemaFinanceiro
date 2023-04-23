@@ -4,6 +4,12 @@ namespace Entities.Notifications;
 
 public class Notification
 {
+
+    public Notification()
+    {
+        _notifications = new List<Notification>();
+    }
+
     [NotMapped]
     public string NameProperty { get; private set; }
 
@@ -12,14 +18,6 @@ public class Notification
 
     [NotMapped]
     private readonly List<Notification> _notifications;
-
-    public Notification()
-    {
-        _notifications = new List<Notification>();
-    }
-
-    public IReadOnlyCollection<Notification> Notifications
-        => _notifications.AsReadOnly();
 
     private void AddNotification(string message, string propertyName)
     {
