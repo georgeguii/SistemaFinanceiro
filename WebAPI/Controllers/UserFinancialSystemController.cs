@@ -3,10 +3,12 @@
 using Domain.Interfaces.IServices;
 using Domain.Interfaces.IUserFinancialSystem;
 using Entities.Entitites;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WebAPI.Controllers;
 [Route("[controller]/[action]")]
 [ApiController]
+[Authorize]
 public class UserFinancialSystemController : ControllerBase
 {
     private readonly InterfaceUserFinancialSystem _interfaceUserFinancialSystem;
