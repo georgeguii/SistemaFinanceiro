@@ -41,4 +41,34 @@ public class ExpenseService : IExpenseService
         if (isValid)
             await _interfaceExpense.Update(expense);
     }
+
+    public async Task<object> LoadGraphics(string userEmail)
+    {
+        IList<Expense> userExpenses = await _interfaceExpense.ListUserExpenses(userEmail);
+        IList<Expense> previousExpenses = await _interfaceExpense.ListUnpaidUserExpenses(userEmail);
+
+        decimal previousMounthUnpaidExpenses = previousExpenses.Any() ? 
+                                                previousExpenses.ToList().Sum(x => x.Value) :
+                                                0;
+
+        decimal paidExpenses = userExpenses
+                                .Where(d => d.Paid && d.ExpenseType == Entities.Enums.ExpenseType.Contas)
+                                .Sum(x => x.Value);
+
+        decimal pendentsExpenses = userExpenses
+                                .Where(d => !d.Paid && d.ExpenseType == Entities.Enums.ExpenseType.Contas)
+                                .Sum(x => x.Value);
+
+        decimal investments = userExpenses
+                                .Where(d => d.ExpenseType == Entities.Enums.ExpenseType.Investimento).Sum(x => x.Value);
+
+        return new
+        {
+            sucess = "Ok",
+            paidExpenses = paidExpenses,
+            pendentsExpenses = pendentsExpenses,
+            previousMounthUnpaidExpenses = previousMounthUnpaidExpenses,
+            investments = investments
+        };
+    }
 }
