@@ -28,5 +28,5 @@ public class Expense : Base
     [ForeignKey("Category")]
     [Column(Order = 1)]
     public int CategoryId { get; set; }
-    public virtual Category Category { get; set; }
+    public virtual Category? Category { get; set; }
 }

@@ -36,7 +36,7 @@ public class TokenController : ControllerBase
         if (result.Succeeded)
         {
             var token = new TokenJWTBuilder()
-                .AddSecurityKey(JwtSecurityKey.Create("Secre_Key-12345678"))
+                .AddSecurityKey(JwtSecurityKey.Create("Secret_Key-12345678"))
                 .AddSubject("George Guilherme")
                 .AddIssuer("Teste.Securiry.Bearer")
                 .AddAudience("Teste.Securiry.Bearer")

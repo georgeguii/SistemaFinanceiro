@@ -1,11 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-
-using Domain.Interfaces.ICategory;
-using Domain.Interfaces.IServices;
-using Entities.Entitites;
 using Microsoft.AspNetCore.Authorization;
 
+using Entities.Entitites;
+using Domain.Interfaces.ICategory;
+using Domain.Interfaces.IServices;
+
 namespace WebAPI.Controllers;
+
 [Route("[controller]/[action]")]
 [ApiController]
 [Authorize]
